@@ -33,9 +33,16 @@ Our solution: output the values from Terraform into a `ConfigMap` inside the `fl
 Terraform should not directly manage the lifecycle of the `flux-system` namespace, especially if Flux is self-managing. To avoid `terraform destroy` side effects, use a `null_resource` to create the namespace imperatively:
 
 ```hcl
-resource "null_resource" "flux_system_namespace" {
+resource "null_resource" "create_flux_ns" {
   provisioner "local-exec" {
-    command = "kubectl create namespace flux-system --dry-run=client -o yaml | kubectl apply -f -"
+    command = <<-EOT
+      aws eks update-kubeconfig \
+        --region ${var.aws_region} \
+        --name ${module.eks.cluster_name}
+
+      kubectl get ns flux-system || kubectl create ns flux-system
+    EOT
+    interpreter = ["/bin/bash", "-c"]
   }
 
   triggers = {
@@ -43,14 +50,6 @@ resource "null_resource" "flux_system_namespace" {
   }
 
   depends_on = [module.eks]
-}
-
-data "kubernetes_namespace" "flux_system" {
-  metadata {
-    name = "flux-system"
-  }
-
-  depends_on = [null_resource.flux_system_namespace]
 }
 ```
 
