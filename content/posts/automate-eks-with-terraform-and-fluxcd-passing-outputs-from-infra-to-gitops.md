@@ -1,4 +1,11 @@
-# Automate EKS with Terraform and FluxCD: Passing Outputs from Infra to GitOps
++++
+title = "Automate EKS with Terraform and FluxCD: Passing Outputs from Infra to GitOps"
+description = ""
+date = 2025-05-11
+author = {name = "Curtis Goolsby", email = "curtis@kubepros.dev"}
+tags = []
+draft = true
++++
 
 When managing Kubernetes infrastructure at scale, it's common to use [Terraform](https://www.terraform.io/) to provision the cluster and [FluxCD](https://fluxcd.io/) (or ArgoCD) to deploy workloads onto it. However, a frequent challenge arises: **how do you pass dynamic values—like EKS endpoints or IAM ARNs—from Terraform into your GitOps configuration?**
 
