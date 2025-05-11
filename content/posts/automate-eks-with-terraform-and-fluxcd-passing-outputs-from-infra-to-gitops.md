@@ -4,7 +4,7 @@ description = ""
 date = 2025-05-11
 author = {name = "Curtis Goolsby", email = "curtis@kubepros.dev"}
 tags = []
-draft = true
+draft = false
 +++
 
 When managing Kubernetes infrastructure at scale, it's common to use [Terraform](https://www.terraform.io/) to provision the cluster and [FluxCD](https://fluxcd.io/) (or ArgoCD) to deploy workloads onto it. However, a frequent challenge arises: **how do you pass dynamic values—like EKS endpoints or IAM ARNs—from Terraform into your GitOps configuration?**
