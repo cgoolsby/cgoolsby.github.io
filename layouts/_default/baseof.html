@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    
+    <!-- Custom CSS -->
+    {{ range .Site.Params.customCSS -}}
+    <link rel="stylesheet" href="{{ . | relURL }}">
+    {{- end }}
+    
+    <!-- Syntax Highlighting CSS -->
+    {{ if .HasShortcode "highlight" }}
+    <link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}">
+    {{ end }}
+    
+    <!-- SEO Tags -->
+    {{ template "_internal/opengraph.html" . }}
+    {{ template "_internal/twitter_cards.html" . }}
+    {{ template "_internal/schema.html" . }}
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    {{ partial "header.html" . }}
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "footer.html" . }}
+    
+    <!-- Copy Code Button Script -->
+    <script>
+        function copyCode(button) {
+            const pre = button.parentElement.querySelector('pre');
+            const code = pre.textContent;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('bg-green-500', 'text-white');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('bg-green-500', 'text-white');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                button.textContent = 'Error!';
+                button.classList.add('bg-red-500', 'text-white');
+                
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.classList.remove('bg-red-500', 'text-white');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

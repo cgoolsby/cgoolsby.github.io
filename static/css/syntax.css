@@ -1,0 +1,52 @@
+/* Monokai-inspired syntax highlighting */
+.chroma {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.chroma .lntd {
+  vertical-align: top;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.chroma .lntable {
+  border-spacing: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 100%;
+  overflow: auto;
+  display: block;
+}
+.chroma .ln {
+  margin-right: 0.4em;
+  padding: 0 0.4em 0 0.4em;
+  color: #75715e;
+}
+.chroma .k, .chroma .kc, .chroma .kd, .chroma .kn, .chroma .kp, .chroma .kr, .chroma .kt {
+  color: #f92672;
+}
+.chroma .na, .chroma .nc, .chroma .nd, .chroma .ne, .chroma .nf, .chroma .nx {
+  color: #a6e22e;
+}
+.chroma .s, .chroma .sa, .chroma .sb, .chroma .sc, .chroma .dl, .chroma .sd, .chroma .s2, .chroma .se, .chroma .sh, .chroma .si, .chroma .sx, .chroma .sr, .chroma .s1, .chroma .ss {
+  color: #e6db74;
+}
+.chroma .m, .chroma .mb, .chroma .mf, .chroma .mh, .chroma .mi, .chroma .il, .chroma .mo {
+  color: #ae81ff;
+}
+.chroma .c, .chroma .ch, .chroma .cm, .chroma .c1, .chroma .cs, .chroma .cp, .chroma .cpf {
+  color: #75715e;
+}
+.chroma .o, .chroma .ow {
+  color: #f8f8f2;
+}
+.chroma .p {
+  color: #f8f8f2;
+}
+.chroma .n {
+  color: #f8f8f2;
+}
+.chroma .bp, .chroma .nb, .chroma .ni, .chroma .nl, .chroma .nn, .chroma .no, .chroma .nt, .chroma .nv, .chroma .vc, .chroma .vg, .chroma .vi, .chroma .vm {
+  color: #66d9ef;
+}

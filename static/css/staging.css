@@ -1,0 +1,16 @@
+/* Styling for staging environment */
+
+/* Staging banner */
+body::before {
+    content: "STAGING ENVIRONMENT - PREVIEW MODE";
+    display: block;
+    background-color: #f97316; /* Orange-500 */
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

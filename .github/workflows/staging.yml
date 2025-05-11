@@ -1,0 +1,125 @@
+name: Deploy Staging
+
+on:
+  push:
+    branches:
+      - staging
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  pull-requests: write
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+          
+      - name: Build
+        run: hugo --minify --environment staging
+          
+      - name: HTML Validation
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: public/
+          
+      - name: Link Checking
+        uses: lycheeverse/lychee-action@v1.8.0
+        with:
+          args: --verbose --no-progress './public/**/*.html'
+          fail: false  # Don't fail on staging for link checking
+          
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+          
+      - name: Build with Hugo
+        env:
+          HUGO_ENV: staging
+          HUGO_ENVIRONMENT: staging
+        run: |
+          hugo \
+            --minify \
+            --environment staging \
+            --baseURL "https://cgoolsby.github.io/blog/staging/" \
+            --buildDrafts \
+            --buildFuture \
+            -d public/staging
+            
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: staging-site
+          path: ./public/staging
+          
+  deploy:
+    name: Deploy Staging
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name != 'pull_request'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: staging-site
+          path: staging
+          
+      - name: Configure Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+      - name: Commit and push
+        run: |
+          git add staging
+          git commit -m "Update staging site" || echo "No changes to commit"
+          git push
+          
+  comment-pr:
+    name: Comment on PR
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Comment on PR
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `✅ Staging build completed successfully!\n\nPreview your changes at: https://cgoolsby.github.io/blog/staging/\n\nThis preview includes draft posts and future-dated content.`
+            })

@@ -1,0 +1,11 @@
+baseURL: https://cgoolsby.github.io/blog/staging/
+buildDrafts: true
+buildFuture: true
+
+params:
+  staging: true
+  
+  # Add a staging banner
+  customCSS:
+    - css/custom.css
+    - css/staging.css

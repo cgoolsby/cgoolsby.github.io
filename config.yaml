@@ -1,0 +1,78 @@
+baseURL: https://cgoolsby.github.io/blog/
+languageCode: en-us
+title: Curtis' Blog
+
+# Hugo Modules configuration
+module:
+  imports:
+    - path: github.com/nanxiaobei/hugo-paper
+
+# Enable syntax highlighting
+pygmentsUseClasses: true
+pygmentsCodeFences: true
+pygmentsCodefencesGuessSyntax: true
+
+# Explicitly set syntax highlighting options
+markup:
+  highlight:
+    codeFences: true
+    guessSyntax: true
+    hl_Lines: ""
+    lineNoStart: 1
+    lineNos: false
+    lineNumbersInTable: true
+    noClasses: false
+    style: monokai
+    tabWidth: 4
+
+# Content management
+buildDrafts: false
+buildFuture: false
+enableGitInfo: true
+
+# Taxonomies
+taxonomies:
+  tag: tags
+  category: categories
+
+# Permalinks
+permalinks:
+  posts: /blog/posts/:slug/
+
+# Menus
+menu:
+  main:
+    - identifier: home
+      name: Home
+      url: /
+      weight: 10
+    - identifier: posts
+      name: Posts
+      url: /posts/
+      weight: 20
+    - identifier: about
+      name: About
+      url: /about/
+      weight: 30
+
+# Site parameters
+params:
+  description: "Curtis Goolsby's personal blog about technology, Kubernetes, and more"
+  author: Curtis Goolsby
+  github: https://github.com/cgoolsby
+  email: curtis@kubepros.dev
+  dateFormat: "Jan 2, 2006"
+  
+  # Social sharing
+  twitter:
+    username: ""
+  
+  # SEO
+  images: []
+  
+  # Theme customization
+  color: "#1e40af"  # Tailwind blue-800
+  
+  # Custom CSS
+  customCSS:
+    - css/custom.css

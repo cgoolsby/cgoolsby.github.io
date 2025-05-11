@@ -1,0 +1,33 @@
+{{ define "main" }}
+<article class="prose lg:prose-xl mx-auto bg-white p-8 rounded-lg shadow-md">
+    <header class="mb-8">
+        <h1 class="text-3xl font-bold mb-4">{{ .Title }}</h1>
+        <div class="text-gray-600">
+            <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+                {{ .Date.Format .Site.Params.dateFormat }}
+            </time>
+            {{ with .Params.author }}
+            <span class="mx-1">•</span>
+            <span>{{ .name }}</span>
+            {{ end }}
+        </div>
+    </header>
+    
+    <div class="content">
+        {{ .Content }}
+    </div>
+    
+    {{ with .Params.tags }}
+    <div class="mt-8 pt-4 border-t border-gray-200">
+        <h3 class="text-lg font-semibold mb-2">Tags:</h3>
+        <div class="flex flex-wrap gap-2">
+            {{ range . }}
+            <a href="{{ "tags/" | relLangURL }}{{ . | urlize }}" class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700">
+                #{{ . }}
+            </a>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+</article>
+{{ end }}
