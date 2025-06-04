@@ -1,6 +1,6 @@
 ---
 title: "Cloud-Agnostic GitOps: Building Self-Provisioning Infrastructure with Terraform, Flux, Cluster API, and Crossplane"
-date: 2025-01-06
+date: 2025-06-02
 draft: false
 tags: ["kubernetes", "gitops", "terraform", "flux", "crossplane", "cluster-api", "infrastructure-as-code"]
 ---
