@@ -51,19 +51,34 @@
         
         // Convert code blocks with language 'mermaid' to mermaid divs
         document.addEventListener('DOMContentLoaded', function() {
-            const mermaidCodeBlocks = document.querySelectorAll('pre > code.language-mermaid');
+            // Look for all code blocks that might contain mermaid syntax
+            const codeBlocks = document.querySelectorAll('pre > code');
             
-            mermaidCodeBlocks.forEach((codeBlock) => {
-                const pre = codeBlock.parentElement;
-                const mermaidCode = codeBlock.textContent;
+            codeBlocks.forEach((codeBlock) => {
+                const codeContent = codeBlock.textContent.trim();
                 
-                // Create a new div for mermaid
-                const mermaidDiv = document.createElement('div');
-                mermaidDiv.className = 'mermaid';
-                mermaidDiv.textContent = mermaidCode;
+                // Check if this is a mermaid diagram by looking for common mermaid keywords
+                const mermaidKeywords = ['graph', 'sequenceDiagram', 'classDiagram', 'stateDiagram', 'erDiagram', 'flowchart', 'gantt', 'pie', 'journey'];
+                const isMermaid = mermaidKeywords.some(keyword => codeContent.startsWith(keyword));
                 
-                // Replace the pre element with the mermaid div
-                pre.parentNode.replaceChild(mermaidDiv, pre);
+                if (isMermaid || codeBlock.classList.contains('language-mermaid')) {
+                    const pre = codeBlock.parentElement; // The pre element
+                    const highlightDiv = pre.parentElement; // The highlight div (if it exists)
+                    const mermaidCode = codeBlock.textContent;
+                    
+                    // Create a new div for mermaid
+                    const mermaidDiv = document.createElement('div');
+                    mermaidDiv.className = 'mermaid';
+                    mermaidDiv.textContent = mermaidCode;
+                    
+                    // Replace the entire highlight div with the mermaid div
+                    if (highlightDiv && highlightDiv.classList.contains('highlight')) {
+                        highlightDiv.parentNode.replaceChild(mermaidDiv, highlightDiv);
+                    } else {
+                        // Fallback for direct pre > code structure
+                        pre.parentNode.replaceChild(mermaidDiv, pre);
+                    }
+                }
             });
             
             // Re-initialize mermaid to render the new divs
