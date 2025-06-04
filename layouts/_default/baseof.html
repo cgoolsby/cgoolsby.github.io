@@ -32,6 +32,45 @@
     </main>
     {{ partial "footer.html" . }}
     
+    <!-- Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#f3f4f6',
+                primaryTextColor: '#111827',
+                primaryBorderColor: '#d1d5db',
+                lineColor: '#6b7280',
+                secondaryColor: '#e5e7eb',
+                tertiaryColor: '#f9fafb'
+            }
+        });
+        
+        // Convert code blocks with language 'mermaid' to mermaid divs
+        document.addEventListener('DOMContentLoaded', function() {
+            const mermaidCodeBlocks = document.querySelectorAll('pre > code.language-mermaid');
+            
+            mermaidCodeBlocks.forEach((codeBlock) => {
+                const pre = codeBlock.parentElement;
+                const mermaidCode = codeBlock.textContent;
+                
+                // Create a new div for mermaid
+                const mermaidDiv = document.createElement('div');
+                mermaidDiv.className = 'mermaid';
+                mermaidDiv.textContent = mermaidCode;
+                
+                // Replace the pre element with the mermaid div
+                pre.parentNode.replaceChild(mermaidDiv, pre);
+            });
+            
+            // Re-initialize mermaid to render the new divs
+            mermaid.init();
+        });
+    </script>
+    
     <!-- Copy Code Button Script -->
     <script>
         function copyCode(button) {

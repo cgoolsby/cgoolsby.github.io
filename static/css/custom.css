@@ -80,3 +80,19 @@
     height: auto;
     border-radius: 0.375rem;
 }
+
+/* Mermaid diagram styling */
+.mermaid {
+    text-align: center;
+    margin: 2rem 0;
+    background-color: #f9fafb;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    border: 1px solid #e5e7eb;
+}
+
+/* Ensure Mermaid diagrams are responsive */
+.mermaid svg {
+    max-width: 100%;
+    height: auto;
+}
