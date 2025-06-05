@@ -1,9 +1,9 @@
 +++
 title = "Building Your First AI Agent from Scratch: A Practical Guide"
 description = ""
-date = 2025-05-11
+date = 2025-06-04
 author = {name = "Curtis Goolsby", email = "curtis@kubepros.dev"}
-tags = []
+tags = ["AI", "Python", "LLM", "AI Agents", "Tutorial", "Machine Learning"]
 draft = false
 +++
 
