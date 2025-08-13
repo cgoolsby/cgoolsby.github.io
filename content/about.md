@@ -2,7 +2,7 @@
 title = "About"
 description = "About Curtis Goolsby and this blog"
 date = 2024-03-03
-author = {name = "Curtis Goolsby", email = "curtis@kubepros.dev"}
+author = {name = "Curtis Goolsby", email = "cvioling@gmail.com"}
 +++
 
 # About Me
@@ -27,7 +27,7 @@ This blog serves as a platform for me to share insights, tutorials, and experien
 
 Feel free to reach out if you have questions, comments, or would like to discuss potential collaborations:
 
-- Email: [curtis@kubepros.dev](mailto:curtis@kubepros.dev)
+- Email: [cvioling@gmail.com](mailto:cvioling@gmail.com)
 - GitHub: [github.com/cgoolsby](https://github.com/cgoolsby)
 - Resume: [Download PDF](/files/resume.pdf)
 

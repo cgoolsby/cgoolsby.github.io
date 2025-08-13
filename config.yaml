@@ -60,7 +60,7 @@ params:
   description: "Curtis Goolsby's personal blog about technology, Kubernetes, and more"
   author: Curtis Goolsby
   github: https://github.com/cgoolsby
-  email: curtis@kubepros.dev
+  email: curtis.goolsby@gmail.com
   dateFormat: "Jan 2, 2006"
   
   # Social sharing

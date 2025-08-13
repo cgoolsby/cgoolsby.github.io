@@ -14,7 +14,7 @@ fi
 TITLE="$1"
 CURRENT_DATE=$(date +%Y-%m-%d)
 AUTHOR_NAME="Curtis Goolsby"
-AUTHOR_EMAIL="curtis@kubepros.dev"
+AUTHOR_EMAIL="curtis.goolsby@gmail.com"
 
 # Generate slug from title
 SLUG=$(echo "$TITLE" | tr '[:upper:]' '[:lower:]' | tr -cd '[:alnum:] -' | tr ' ' '-' | tr -s '-')

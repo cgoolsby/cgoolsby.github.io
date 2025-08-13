@@ -2,7 +2,7 @@
 title = "Automate EKS with Terraform and FluxCD: Passing Outputs from Infra to GitOps"
 description = ""
 date = 2025-05-11
-author = {name = "Curtis Goolsby", email = "curtis@kubepros.dev"}
+author = {name = "Curtis Goolsby", email = "cvioling@gmail.com"}
 tags = []
 draft = false
 +++

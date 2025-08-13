@@ -2,7 +2,7 @@
 title = "Validating Admission Policies for Kubernetes"
 description = "A Primer for using Validating Admission Policies in Kubernetes"
 date = 2024-03-03
-author = {name = "Curtis Goolsby", email = "curtis@kubepros.dev"}
+author = {name = "Curtis Goolsby", email = "cvioling@gmail.com"}
 tags = ["kubernetes", "admission-control", "security"]
 +++
 
