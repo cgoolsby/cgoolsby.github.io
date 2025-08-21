@@ -1,5 +1,5 @@
 +++
-title = "Enterprize Secrets Management with SOPS: A Production-Ready Implementation"
+title = "Enterprise Secrets Management with SOPS: A Production-Ready Implementation"
 description = ""
 date = 2025-08-21
 author = {name = "Curtis Goolsby", email = "cvioling@gmail.com"}
