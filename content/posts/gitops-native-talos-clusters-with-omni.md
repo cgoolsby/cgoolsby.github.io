@@ -88,17 +88,6 @@ speaking its protocol. One binary, one CRD, one `helm install`. If you need
 portability across clouds, use CAPI. If Omni *is* your platform, this is a much
 smaller thing to run.
 
-## One gotcha worth stealing
-
-The controller emits Kubernetes Events via client-go's `events.EventRecorder` —
-which writes to the **`events.k8s.io`** API group, not the legacy core one. My RBAC
-only granted core, so every event write was denied (`events.events.k8s.io is
-forbidden`) while reconciliation happily succeeded. If you use `tools/events`, make
-sure your ClusterRole covers `events.k8s.io`. It passes every test and only bites in
-a real cluster.
-
----
-
 It's Apache-2.0, cosign-signed with an SBOM, installable via Helm or Kustomize:
 [**cgoolsby/omni-gitops-controller**](https://github.com/cgoolsby/omni-gitops-controller).
 If you're running self-hosted Omni with GitOps, I'd like to hear how it fits.
